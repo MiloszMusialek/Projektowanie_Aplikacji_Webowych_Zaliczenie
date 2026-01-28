@@ -29,6 +29,9 @@ class Player(models.Model):
 
     club = models.ForeignKey('Club', null=True, blank=True, on_delete=models.SET_NULL, related_name="players")
 
+    class Meta:
+        ordering = ['last_name']
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -41,7 +44,7 @@ class Club(models.Model):
     stadium = models.CharField(max_length=70)
 
     manager = models.ForeignKey('Manager', null=True, blank=True, on_delete=models.SET_NULL)
-    league = models.ForeignKey('League', null=False, blank=False, on_delete=models.CASCADE)
+    league = models.ForeignKey('League', null=False, blank=False, on_delete=models.CASCADE, related_name="clubs")
 
     def __str__(self):
         return self.club_name
