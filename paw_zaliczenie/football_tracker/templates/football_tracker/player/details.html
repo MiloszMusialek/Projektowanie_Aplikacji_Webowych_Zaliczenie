@@ -4,4 +4,10 @@
 
 {% block content %}
 <p>{{ player.first_name}} {{ player.last_name }}</p>
+<p>Born: {{ player.birth_date }}</p>
+<p>Nationality: {{ player.nationality }}</p>
+<p>Foot: {{ player.get_preffered_foot_display }}</p>
+<p>Height: {{ player.height }} cm</p>
+<p>Position: {{ player.get_position_display }}</p>
+<a href="{% url 'club-details' player.club_id %}">{{ player.club }}</a>
 {% endblock %}

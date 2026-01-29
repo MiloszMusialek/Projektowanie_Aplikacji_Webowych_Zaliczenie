@@ -1,0 +1,9 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}{{ tournament.name }} {{ tournamnet.year }}{% endblock %}
+{% block content %}
+<p>{{ tournament.name }}</p>
+<p>Year: {{ tournament.year }}</p>
+<p>Man of the Match: {{ tournament.man_of_the_match }}</p>
+<p>Finale Result: {{ tournament.final_winner }} {{ tournament.winner_score }} : {{ tournament.second_place_score }} {{ tournament.final_second_place }}</p>
+{% endblock %}

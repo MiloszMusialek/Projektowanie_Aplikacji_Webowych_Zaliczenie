@@ -6,17 +6,22 @@
         <link href="{% static "css/football_tracker.css" %}" rel="stylesheet">
     </head>
     <body>
-        <div id="content">
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Players</a></li>
-                <li><a href="">Clubs</a></li>
-                <li><a href="">Leagues</a></li>
-                <li><a href="">Managers</a></li>
-                <li><a href="">Tournaments</a></li>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'home-page' %}">Home</a></li>
+                <li><a href="{% url 'players-list'%}">Players</a></li>
+                <li><a href="{% url 'club-list' %}">Clubs</a></li>
+                <li><a href="{% url 'league-list' %}">Leagues</a></li>
+                <li><a href="{% url 'manager-list' %}">Managers</a></li>
+                <li><a href="{% url 'tournament-list' %}">Tournaments</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'user-logout' %}">Log Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'user-login' %}">Log In</a></li>
+                {% endif %}
             </ul>
-            {% block content %}
-            {% endblock %}
         </div>
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

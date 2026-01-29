@@ -3,8 +3,11 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-{% for manager in managers %}
-    <p>{{ manager.first_name }} {{ manager.last_name }}</p>
-    <hr>
-{% endfor %}
+<div>
+    {% for manager in managers %}
+        <a href="{% url 'manager-details' manager.id %}">
+            <p>{{ manager.first_name }} {{ manager.last_name }}</p>
+        </a>
+    {% endfor %}   
+</div>
 {% endblock %}

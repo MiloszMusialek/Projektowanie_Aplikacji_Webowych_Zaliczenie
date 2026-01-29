@@ -2,12 +2,11 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-{% for club in clubs %}
-    <p>{{ club.club_name }}</p>
-    <p>{{ club.foundation_year }}</p>
-    <p>{{ club.stadium }}</p>
-    <p>{{ club.manager }}</p>
-    <p>{{ club.league }}</p>
-    <hr>
-{% endfor %}
+<div>
+    {% for club in clubs %}
+        <a href="{% url 'club-details' club.id %}">
+            <p>{{ club.club_name }}</p>
+        </a>
+    {% endfor %}   
+</div>
 {% endblock %}

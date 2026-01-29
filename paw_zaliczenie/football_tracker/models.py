@@ -68,9 +68,9 @@ class Tournament(models.Model):
     name = models.CharField(max_length=100)
     year = models.PositiveIntegerField(null=False, blank=False)
 
-    man_of_the_match = models.ForeignKey('Player', null=True, blank=True, on_delete=models.SET_NULL)
-    final_winner = models.ForeignKey('Club', null=True, blank=True, related_name="tournament_winner", on_delete=models.SET_NULL)
-    final_second_place = models.ForeignKey('Club', null=True, blank=True, related_name="tournament_second_place", on_delete=models.SET_NULL)
+    man_of_the_match = models.ForeignKey('Player', null=False, blank=False, on_delete=models.CASCADE)
+    final_winner = models.ForeignKey('Club', null=False, blank=False, related_name="tournament_winner", on_delete=models.CASCADE)
+    final_second_place = models.ForeignKey('Club', null=False, blank=False, related_name="tournament_second_place", on_delete=models.CASCADE)
 
     winner_score = models.PositiveIntegerField(blank=False, null=False)
     second_place_score = models.PositiveIntegerField(blank=False, null=False)

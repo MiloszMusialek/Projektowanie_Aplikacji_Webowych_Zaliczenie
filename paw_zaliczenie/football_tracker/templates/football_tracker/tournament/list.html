@@ -1,0 +1,12 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}{% endblock %}
+{% block content %}
+<div>
+    {% for tournament in tournaments %}
+        <a href="{% url 'tournament-details' tournament.id %}">
+            <p>{{ tournament.name }} {{ tournament.year }}</p>
+        </a>
+    {% endfor %}   
+</div>
+{% endblock %}

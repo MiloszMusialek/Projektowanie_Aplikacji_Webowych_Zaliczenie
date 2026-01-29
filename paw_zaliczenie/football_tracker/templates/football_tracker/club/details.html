@@ -4,7 +4,23 @@
 
 {% block content %}
 <p>{{ club.club_name }}</p>
-<p>{{ club.foundation_year }}</p>
-<p>{{ club.stadium }}</p>
-<p></p>
+<p>Founded: {{ club.foundation_year }}</p>
+<p>Stadium: {{ club.stadium }}</p>
+<p>Manager:
+{% if club.manager %}
+    <a href="{% url 'manager-details' club.manager_id %}">{{ club.manager }}</a>
+{% else %}
+    <span>Currently without a manager</span>    
+{% endif %}
+</p>
+
+<p>Players:
+    <ul>
+        {% for player in club_players %}
+            <li>
+                <a href="{% url 'player-details' player.id %}">{{ player.first_name }} {{ player.last_name }}</a>
+            </li>
+        {% endfor %}
+    </ul>   
+</p>
 {% endblock %}

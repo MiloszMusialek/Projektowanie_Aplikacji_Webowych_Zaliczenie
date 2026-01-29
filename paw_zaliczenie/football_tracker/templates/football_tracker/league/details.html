@@ -3,7 +3,23 @@
 {% block title %}{% endblock %}
 {% block content %}
 <p>{{ league.league_name }}</p>
-<p>{{ league.country }}</p>
-<p>{{ league.founding_year }}</p>
-<p>{{ league.top_scorer }}</p>
+<p>Country: {{ league.country }}</p>
+<p>Founded: {{ league.founding_year }}</p>
+
+<p>Top Scorer:
+{% if league.top_scorer %}
+    <a href="{% url 'player-details' league.top_scorer_id% }">{{ league.top_scorer }}</a>
+{% else %}
+    <p>No available top scorer</p>
+{% endif %}
+</p>
+<p>Clubs:
+    <ul>
+        {% for club in clubs %}
+        <li>
+            <a href="{% url 'club-details' club.id %}">{{ club.club_name }}</a>            
+        </li>
+        {% endfor %}
+    </ul>
+</p>
 {% endblock %}

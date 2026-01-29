@@ -3,11 +3,16 @@ from . import views
 
 urlpatterns = [
     # URL dla strony głównej aplikacji
-    path('', views.home_page_html, name='home-page'),
+    path('home/', views.home_page_html, name='home-page'),
+
+    # URLs dla logowania i wylogowywania
+    path('login/', views.user_login, name='user-login'),
+    path('logout/', views.user_logout, name='user-logout'),
 
     # URLs dla modelu Player
     path('players/', views.player_list_html, name='players-list'),
     path('players/<int:id>/', views.player_details_html, name='player-details'),
+    path('players/create/', views.player_create_html, name='player-create'),
 
     # URLs dla modelu Club
     path('clubs/', views.club_list_html, name='club-list'),
