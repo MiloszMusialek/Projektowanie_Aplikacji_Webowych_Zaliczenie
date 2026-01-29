@@ -1,0 +1,30 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<h1>Add a new League</h1>
+{% if error %}
+    <p style="color:red">{{ error }}</p>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <label for="league_name">Name:</label>
+    <input type="text", id="league_name", name="league_name"><br><br>
+
+    <label for="country">Country:</label>
+    <input type="text", id="country", name="country"><br><br>
+
+    <label for="founding_year">Founded: </label>
+    <input type="number", id="founding_year", name="founding_year"><br><br>
+
+    <label for="top_scorer">Top Scorer: </label>
+    <select id="top_scorer" name="top_scorer">
+        {% for p in players %}
+            <option value="{{ p.id }}">{{ p.first_name }} {{ p.last_name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Create</button>
+</form>
+{% endblock %}

@@ -6,4 +6,10 @@
 <p>{{ manager.first_name }} {{ manager.last_name }}</p>
 <p>Born: {{ manager.birth_date }}</p>
 <p>Nationality: {{ manager.nationality }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this manager?');">
+        Delete
+    </button>
+</form>
 {% endblock %}

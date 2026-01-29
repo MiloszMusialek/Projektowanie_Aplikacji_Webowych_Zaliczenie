@@ -9,5 +9,15 @@
 <p>Foot: {{ player.get_preffered_foot_display }}</p>
 <p>Height: {{ player.height }} cm</p>
 <p>Position: {{ player.get_position_display }}</p>
-<a href="{% url 'club-details' player.club_id %}">{{ player.club }}</a>
+{% if player.club %}
+    <a href="{% url 'club-details' player.club_id %}">Club: {{ player.club }}</a>
+{% else %}
+    <span>Currently without a club</span>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this player?');">
+        Delete
+    </button>
+</form>
 {% endblock %}
