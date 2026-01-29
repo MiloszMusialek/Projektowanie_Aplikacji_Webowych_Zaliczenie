@@ -1,0 +1,13 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}List of Players{% endblock %}
+{% block content %}
+<div>
+    {% for player in players %}
+        <a href="{% url 'player-details' player.id %}">
+            <p>{{ player.first_name }} {{ player.last_name }}</p>
+        </a>
+        <hr>
+    {% endfor %}   
+</div>
+{% endblock %}

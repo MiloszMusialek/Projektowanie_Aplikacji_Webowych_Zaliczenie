@@ -1,0 +1,13 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}{% endblock %}
+{% block content %}
+{% for club in clubs %}
+    <p>{{ club.club_name }}</p>
+    <p>{{ club.foundation_year }}</p>
+    <p>{{ club.stadium }}</p>
+    <p>{{ club.manager }}</p>
+    <p>{{ club.league }}</p>
+    <hr>
+{% endfor %}
+{% endblock %}

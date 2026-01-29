@@ -1,0 +1,9 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}{{ manager.first_name }} {{ manager.last_name }}{% endblock %}
+
+{% block content %}
+<p>{{ manager.first_name }} {{ manager.last_name }}</p>
+<p>{{ manager.birth_date }}</p>
+<p>{{ manager.nationality }}</p>
+{% endblock %}

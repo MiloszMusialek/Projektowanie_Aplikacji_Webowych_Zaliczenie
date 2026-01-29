@@ -1,0 +1,22 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static "css/football_tracker.css" %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="content">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Players</a></li>
+                <li><a href="">Clubs</a></li>
+                <li><a href="">Leagues</a></li>
+                <li><a href="">Managers</a></li>
+                <li><a href="">Tournaments</a></li>
+            </ul>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

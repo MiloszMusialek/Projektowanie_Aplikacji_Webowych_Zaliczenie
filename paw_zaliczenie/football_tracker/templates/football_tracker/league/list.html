@@ -1,0 +1,9 @@
+{% extends "football_tracker/base.html" %}
+
+{% block title %}{% endblock %}
+{% block content %}
+{% for league in leagues %}
+    <p>{{ league.league_name }}</p>
+    <hr>
+{% endfor %}
+{% endblock %}
