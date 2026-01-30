@@ -2,6 +2,11 @@
 
 {% block title %}{% endblock %}
 {% block content %}
+<form method="get">
+    <input type="text", name="search", placeholder="Search leagues", value="{{ seach_query }}">
+    <button type="submit">Filter</button>
+    <a href="{% url 'league-create' %}">Add</a>
+</form>
 <div>
     {% for league in leagues %}
         <a href="{% url 'league-details' league.id %}">

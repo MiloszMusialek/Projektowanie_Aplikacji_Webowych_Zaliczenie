@@ -36,4 +36,6 @@ urlpatterns = [
     # URLs dla modelu Tournament
     path('tournaments/', views.tournament_list_html, name='tournament-list'),
     path('tournaments/<int:id>/', views.tournament_details_html, name='tournament-details'),
+    path('tournaments/create/', views.tournament_create_html, name='tournament-create'),
+    path('tournaments/update/<int:id>/', views.tournament_update_html, name='tournament-update'),
 ]
