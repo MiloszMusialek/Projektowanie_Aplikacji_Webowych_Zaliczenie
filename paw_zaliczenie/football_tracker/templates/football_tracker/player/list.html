@@ -1,6 +1,6 @@
 {% extends "football_tracker/base.html" %}
 
-{% block title %}List of Players{% endblock %}
+{% block title %}List Players{% endblock %}
 {% block content %}
 <div class="center-wrapper">
     <div class="main-box">
@@ -21,7 +21,7 @@
                 <option value="FW"{% if filter_position == "FW" %}selected{% endif %}>Forward</option>
             </select>
             <button type="submit">Filter</button>
-            {% if perms.football_tracker.create_player %}
+            {% if perms.football_tracker.add_player %}
                 <a href="{% url 'player-create' %}">Add</a>
             {% endif %}
         </form>

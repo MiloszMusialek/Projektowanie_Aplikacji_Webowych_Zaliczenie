@@ -90,7 +90,7 @@ def player_details_html(request, id):
 
 # Widok do tworzenia nowego piłkarza
 @login_required(login_url='user-login')
-@permission_required('football_tracker.create_player', raise_exception=True)
+@permission_required('football_tracker.add_player', raise_exception=True)
 def player_create_html(request):
     clubs = Club.objects.all()
 
@@ -260,7 +260,7 @@ def club_details_html(request, id):
 
 # Widok do tworzenia nowego klubu
 @login_required(login_url='user-login')
-@permission_required('football_tracker.create_club', raise_exception=True)
+@permission_required('football_tracker.add_club', raise_exception=True)
 def club_create_html(request):
     leagues = League.objects.all()
     managers = Manager.objects.all()
@@ -414,7 +414,7 @@ def manager_details_html(request, id):
 
 # Widok do tworzenia nowego menadzera
 @login_required(login_url='user-login')
-@permission_required('football_tracker.create_manager', raise_exception=True)
+@permission_required('football_tracker.add_manager', raise_exception=True)
 def manager_create_html(request):
     if request.method == "GET":
         return render(request, "football_tracker/manager/create.html")
@@ -532,7 +532,7 @@ def league_details_html(request, id):
 
 # Widok do dodawania nowej ligi
 @login_required(login_url='user-login')
-@permission_required('football_tracker.create_league', raise_exception=True)
+@permission_required('football_tracker.add_league', raise_exception=True)
 def league_create_html(request):
     players = Player.objects.all()
 
@@ -669,7 +669,7 @@ def tournament_details_html(request, id):
 
 # Widok do tworzenia nowego obiektu Tournament
 @login_required(login_url='user-login')
-@permission_required('football_tracker.create_tournament', raise_exception=True)
+@permission_required('football_tracker.add_tournament', raise_exception=True)
 def tournament_create_html(request):
     players = Player.objects.all()
     clubs = Club.objects.all()
