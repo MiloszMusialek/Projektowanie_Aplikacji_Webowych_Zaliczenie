@@ -5,7 +5,9 @@
 <form method="get">
     <input type="text", name="search", placeholder="Search leagues", value="{{ seach_query }}">
     <button type="submit">Filter</button>
-    <a href="{% url 'league-create' %}">Add</a>
+    {% if perms.football_tracker.create_league %}
+        <a href="{% url 'league-create' %}">Add</a>
+    {% endif %}
 </form>
 <div>
     {% for league in leagues %}

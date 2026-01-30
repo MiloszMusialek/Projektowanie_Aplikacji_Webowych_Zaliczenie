@@ -6,7 +6,9 @@
 <form method="get">
     <input type="text", name="search", placeholder="Search managers", value="{{ seach_query }}">
     <button type="submit">Filter</button>
-    <a href="{% url 'manager-create' %}">Add</a>
+    {% if perms.football_tracker.create_manager %}
+        <a href="{% url 'manager-create' %}">Add</a>
+    {% endif %}
 </form>
 <div>
     {% for manager in managers %}

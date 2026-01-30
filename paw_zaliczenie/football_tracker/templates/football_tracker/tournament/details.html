@@ -8,11 +8,15 @@
 <p>Finale Result: {{ tournament.final_winner }} {{ tournament.winner_score }} : {{ tournament.second_place_score }} {{ tournament.final_second_place }}</p>
 <p>City: {{ tournament.city }}</p>
 <p>Venue: {{tournament.venue }}</p>
-<a href="{% url 'tournament-update' tournament.id %}">Edit</a>
+{% if perms.football_tracker.change_tournament %}
+    <a href="{% url 'tournament-update' tournament.id %}">Edit</a>
+{% endif %}
 <form method="post">
     {% csrf_token %}
-    <button type="submit" onclick="return confirm('Are you sure you want to delete this tournament?');">
-        Delete
-    </button>
+    {% if perms.football_tracker.delete_tournament %}
+        <button type="submit" onclick="return confirm('Are you sure you want to delete this tournament?');">
+            Delete
+        </button>
+    {% endif %}
 </form>
 {% endblock %}

@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from .models import Player, Club, League, Manager, Tournament
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.utils import timezone
 from django.db.models import Q
-# region WIDOKI DLA LOGOWANIA WYLOGOWYWANIA I STRONY GŁÓWNEJ
+# region WIDOKI GŁÓWNA LOGOWANIE
 
 # Widok do wyświetlania panelu logowania
 def user_login(request):
@@ -39,10 +39,11 @@ def home_page_html(request):
 
 
 
-# region WIDOKI DLA MODELU PLAYER
+# region WIDOKI PLAYER
 
 # Widok do wyświetlania całej listy piłkarzy
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_player', raise_exception=True)
 def player_list_html(request):
     players = Player.objects.all()
 
@@ -73,6 +74,7 @@ def player_list_html(request):
 
 # Widok do wyświetlania konkretnego piłkarza
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_player', raise_exception=True)
 def player_details_html(request, id):
     try:
         player = Player.objects.get(id=id)
@@ -88,6 +90,7 @@ def player_details_html(request, id):
 
 # Widok do tworzenia nowego piłkarza
 @login_required(login_url='user-login')
+@permission_required('football_tracker.create_player', raise_exception=True)
 def player_create_html(request):
     clubs = Club.objects.all()
 
@@ -145,6 +148,7 @@ def player_create_html(request):
 
 # Widok do aktualizowania piłkarza
 @login_required(login_url='user-login')
+@permission_required('football_tracker.update_player', raise_exception=True)
 def player_update_html(request, id):
     clubs = Club.objects.all()
 
@@ -212,10 +216,11 @@ def player_update_html(request, id):
 
 
 
-# region WIDOKI DLA MODELU CLUB
+# region WIDOKI CLUB
 
 # Widok do wyświetlania całej listy klubów
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_club', raise_exception=True)
 def club_list_html(request):
     clubs = Club.objects.all()
     leagues = League.objects.all()
@@ -238,6 +243,7 @@ def club_list_html(request):
 
 # Widok do wyświetlania konkretnego klubu
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_club', raise_exception=True)
 def club_details_html(request, id):
     try:
         club = Club.objects.get(id=id)
@@ -254,6 +260,7 @@ def club_details_html(request, id):
 
 # Widok do tworzenia nowego klubu
 @login_required(login_url='user-login')
+@permission_required('football_tracker.create_club', raise_exception=True)
 def club_create_html(request):
     leagues = League.objects.all()
     managers = Manager.objects.all()
@@ -307,6 +314,7 @@ def club_create_html(request):
         
 
 @login_required(login_url='user-login')
+@permission_required('football_tracker.update_club', raise_exception=True)
 def club_update_html(request, id):
     managers = Manager.objects.all()
     leagues = League.objects.all()
@@ -370,10 +378,11 @@ def club_update_html(request, id):
 
 
 
-# region WIDOKI DLA MODELU MANAGER
+# region WIDOKI MANAGER
 
 # Widok do wyświetlania całej listy menadzerów
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_manager', raise_exception=True)
 def manager_list_html(request):
     managers = Manager.objects.all()
 
@@ -389,6 +398,7 @@ def manager_list_html(request):
 
 # Widok do wyświetlania konkretnego managera
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_manager', raise_exception=True)
 def manager_details_html(request, id):
     try:
         manager = Manager.objects.get(id=id)
@@ -404,6 +414,7 @@ def manager_details_html(request, id):
 
 # Widok do tworzenia nowego menadzera
 @login_required(login_url='user-login')
+@permission_required('football_tracker.create_manager', raise_exception=True)
 def manager_create_html(request):
     if request.method == "GET":
         return render(request, "football_tracker/manager/create.html")
@@ -440,6 +451,7 @@ def manager_create_html(request):
 
 # Widok do aktualizowania menadzera
 @login_required(login_url='user-login')
+@permission_required('football_tracker.update_manager', raise_exception=True)
 def manager_update_html(request, id):
     try:
         manager = Manager.objects.get(id=id)
@@ -486,10 +498,11 @@ def manager_update_html(request, id):
 
 
 
-# region WIDOKI DLA MODELU LEAGUE
+# region WIDOKI LEAGUE
 
 # Widok do wyświetlania całej listy lig
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_league', raise_exception=True)
 def league_list_html(request):
     leagues = League.objects.all()
 
@@ -502,6 +515,7 @@ def league_list_html(request):
 
 # Widok do wyświetlania konkretnej ligi
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_league', raise_exception=True)
 def league_details_html(request, id):
     try:
         league = League.objects.get(id=id)
@@ -518,6 +532,7 @@ def league_details_html(request, id):
 
 # Widok do dodawania nowej ligi
 @login_required(login_url='user-login')
+@permission_required('football_tracker.create_league', raise_exception=True)
 def league_create_html(request):
     players = Player.objects.all()
 
@@ -565,6 +580,7 @@ def league_create_html(request):
 
 # Widok do aktualizowania wybranej ligi
 @login_required(login_url='user-login')
+@permission_required('football_tracker.update_league', raise_exception=True)
 def league_update_html(request, id):
     players = Player.objects.all()
 
@@ -620,10 +636,11 @@ def league_update_html(request, id):
 
 
 
-# region WIDOKI DLA MODELU TOURNAMENT
+# region WIDOKI TOURNAMENT
 
 # Widok do wyświetlania całej listy turniejów
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_tournament', raise_exception=True)
 def tournament_list_html(request):
     tournamnets = Tournament.objects.all()
 
@@ -636,6 +653,7 @@ def tournament_list_html(request):
 
 # Widok do wyświetlania konkretnego turnieju
 @login_required(login_url='user-login')
+@permission_required('football_tracker.view_tournament', raise_exception=True)
 def tournament_details_html(request, id):
     try:
         tournament = Tournament.objects.get(id=id)
@@ -651,6 +669,7 @@ def tournament_details_html(request, id):
 
 # Widok do tworzenia nowego obiektu Tournament
 @login_required(login_url='user-login')
+@permission_required('football_tracker.create_tournament', raise_exception=True)
 def tournament_create_html(request):
     players = Player.objects.all()
     clubs = Club.objects.all()
@@ -690,6 +709,9 @@ def tournament_create_html(request):
             if not venue[0].isupper() or len(venue) < 2:
                 error = "Incorrect venue format"
                 return render(request, "football_tracker/tournament/create.html", {'error': error, 'players': players, 'clubs': clubs})
+            if final_winner_id == final_second_place_id:
+                error = "A club can't play against itself"
+                return render(request, "football_tracker/tournament/create.html", {'error': error, 'players': players, 'clubs': clubs})
 
 
             try:
@@ -726,6 +748,7 @@ def tournament_create_html(request):
 
 # Widok do aktualizowania danego obiektu Tournament
 @login_required(login_url='user-login')
+@permission_required('football_tracker.update_tournament', raise_exception=True)
 def tournament_update_html(request, id):
     players = Player.objects.all()
     clubs = Club.objects.all()
