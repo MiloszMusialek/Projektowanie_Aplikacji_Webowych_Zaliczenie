@@ -2,18 +2,22 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-<form method="get">
-    <input type="text", name="search", placeholder="Search Tournaments", value="{{ seach_query }}">
-    <button type="submit">Filter</button>
-    {% if perms.football_tracker.create_tournament %}
-        <a href="{% url 'tournament-create' %}">Add</a>
-    {% endif %}
-</form>
-<div>
-    {% for tournament in tournaments %}
-        <a href="{% url 'tournament-details' tournament.id %}">
-            <p>{{ tournament.name }} {{ tournament.year }}</p>
-        </a>
-    {% endfor %}   
+<div class="center-wrapper">
+    <div class="main-box">
+        <form method="get">
+            <input type="text", name="search", placeholder="Search Tournaments", value="{{ seach_query }}">
+            <button type="submit">Filter</button>
+            {% if perms.football_tracker.create_tournament %}
+                <a href="{% url 'tournament-create' %}">Add</a>
+            {% endif %}
+        </form>
+        <div>
+            {% for tournament in tournaments %}
+                <a href="{% url 'tournament-details' tournament.id %}">
+                    <p>{{ tournament.name }} {{ tournament.year }}</p>
+                </a>
+            {% endfor %}   
+        </div>
+    </div>
 </div>
 {% endblock %}

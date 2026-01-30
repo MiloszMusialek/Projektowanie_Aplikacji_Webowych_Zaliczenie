@@ -148,7 +148,7 @@ def player_create_html(request):
 
 # Widok do aktualizowania piłkarza
 @login_required(login_url='user-login')
-@permission_required('football_tracker.update_player', raise_exception=True)
+@permission_required('football_tracker.change_player', raise_exception=True)
 def player_update_html(request, id):
     clubs = Club.objects.all()
 
@@ -314,7 +314,7 @@ def club_create_html(request):
         
 
 @login_required(login_url='user-login')
-@permission_required('football_tracker.update_club', raise_exception=True)
+@permission_required('football_tracker.change_club', raise_exception=True)
 def club_update_html(request, id):
     managers = Manager.objects.all()
     leagues = League.objects.all()
@@ -451,7 +451,7 @@ def manager_create_html(request):
 
 # Widok do aktualizowania menadzera
 @login_required(login_url='user-login')
-@permission_required('football_tracker.update_manager', raise_exception=True)
+@permission_required('football_tracker.change_manager', raise_exception=True)
 def manager_update_html(request, id):
     try:
         manager = Manager.objects.get(id=id)
@@ -580,7 +580,7 @@ def league_create_html(request):
 
 # Widok do aktualizowania wybranej ligi
 @login_required(login_url='user-login')
-@permission_required('football_tracker.update_league', raise_exception=True)
+@permission_required('football_tracker.change_league', raise_exception=True)
 def league_update_html(request, id):
     players = Player.objects.all()
 
@@ -748,7 +748,7 @@ def tournament_create_html(request):
 
 # Widok do aktualizowania danego obiektu Tournament
 @login_required(login_url='user-login')
-@permission_required('football_tracker.update_tournament', raise_exception=True)
+@permission_required('football_tracker.change_tournament', raise_exception=True)
 def tournament_update_html(request, id):
     players = Player.objects.all()
     clubs = Club.objects.all()

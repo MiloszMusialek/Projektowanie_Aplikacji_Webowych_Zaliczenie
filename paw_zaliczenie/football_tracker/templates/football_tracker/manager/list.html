@@ -3,18 +3,23 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<form method="get">
-    <input type="text", name="search", placeholder="Search managers", value="{{ seach_query }}">
-    <button type="submit">Filter</button>
-    {% if perms.football_tracker.create_manager %}
-        <a href="{% url 'manager-create' %}">Add</a>
-    {% endif %}
-</form>
-<div>
-    {% for manager in managers %}
-        <a href="{% url 'manager-details' manager.id %}">
-            <p>{{ manager.first_name }} {{ manager.last_name }}</p>
-        </a>
-    {% endfor %}   
+<div class="center-wrapper">
+    <di class="main-box">
+        <form method="get">
+            <input type="text", name="search", placeholder="Search managers", value="{{ seach_query }}">
+            <button type="submit">Filter</button>
+            {% if perms.football_tracker.create_manager %}
+                <a href="{% url 'manager-create' %}">Add</a>
+            {% endif %}
+        </form>
+        <div>
+            {% for manager in managers %}
+                <a href="{% url 'manager-details' manager.id %}">
+                    <p>{{ manager.first_name }} {{ manager.last_name }}</p>
+                </a>
+            {% endfor %}   
+        </div>
+    </div>
 </div>
+
 {% endblock %}

@@ -14,6 +14,12 @@ body {
     gap: 30px;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;  
+}
+
 #navbar li {
     float: none;
 }
@@ -33,4 +39,57 @@ body {
 a {
     text-decoration: none;
     color: black;
+}
+
+.center-wrapper {
+    display: flex;
+    justify-content: center; /* Środkowanie w poziomie */
+    align-items: center;     /* Środkowanie w pionie */
+    min-height: 80vh;        /* Wysokość obszaru (odejmujemy trochę na navbar) */
+}
+
+.main-box {
+    height: auto;
+    width: 500px;
+    border: 2px solid black;
+    padding: 50px;
+    border-radius: 50px;
+    background-color: #F1EEE7;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Opcjonalnie: lekki cień */
+}
+
+.button-delete {
+    background-color: #ff4d4d; 
+    color: white;            
+    border: none;             
+    padding: 10px 20px;       
+    border-radius: 8px;        
+    font-weight: bold;         
+    cursor: pointer;           
+    transition: background-color 0.3s ease; 
+}
+
+
+.button-delete:hover {
+    background-color: #cc0000; 
+}
+
+.button-edit {
+    display: inline-block;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-edit:hover {
+    background-color: #0b7dda;
+    color: white;
 }

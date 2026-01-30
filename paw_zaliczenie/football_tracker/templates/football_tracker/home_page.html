@@ -1,13 +1,15 @@
 {% extends "football_tracker/base.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<div>
-    <p><a href="{% url 'players-list' %}">View All Players</a></p>
-    <p><a href="{% url 'club-list' %}">View All Clubs</a></p>
-    <p><a href="{% url 'league-list' %}">View All Leagues</a></p>
-    <p><a href="{% url 'manager-list' %}">View All Managers</a></p>
-    <p><a href="{% url 'tournament-list' %}">View All Tournaments</a></p>
+<div class="center-wrapper">
+    <div class="main-box">
+        <p><a href="{% url 'players-list' %}">View All Players</a></p>
+        <p><a href="{% url 'club-list' %}">View All Clubs</a></p>
+        <p><a href="{% url 'league-list' %}">View All Leagues</a></p>
+        <p><a href="{% url 'manager-list' %}">View All Managers</a></p>
+        <p><a href="{% url 'tournament-list' %}">View All Tournaments</a></p>
+    </div>
 </div>
 {% endblock %}

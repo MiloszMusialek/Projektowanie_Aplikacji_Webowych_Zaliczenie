@@ -2,25 +2,29 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-<form method="get">
-    <input type="text", name="search", placeholder="Search clubs", value="{{ seach_query }}">
+<div class="center-wrapper">
+    <div class="main-box">
+        <form method="get">
+            <input type="text", name="search", placeholder="Search clubs", value="{{ seach_query }}">
 
-    <select name="league">
-        <option value="">No Filter</option>
-        {% for l in leagues %}
-            <option value="{{ l.id }}"{% if filter_league == l.id %}selected{% endif %}>{{l.league_name}}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Filter</button>
-    {% if perms.football_tracker.create_club %}
-        <a href="{% url 'club-create' %}">Add</a>
-    {% endif %}
-</form>
-<div>
-    {% for club in clubs %}
-        <a href="{% url 'club-details' club.id %}">
-            <p>{{ club.club_name }}</p>
-        </a>
-    {% endfor %}   
+            <select name="league">
+                <option value="">No Filter</option>
+                {% for l in leagues %}
+                    <option value="{{ l.id }}"{% if filter_league == l.id %}selected{% endif %}>{{l.league_name}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filter</button>
+            {% if perms.football_tracker.create_club %}
+                <a href="{% url 'club-create' %}">Add</a>
+            {% endif %}
+        </form>
+        <div>
+            {% for club in clubs %}
+                <a href="{% url 'club-details' club.id %}">
+                    <p>{{ club.club_name }}</p>
+                </a>
+            {% endfor %}   
+        </div>
+    </div>
 </div>
 {% endblock %}

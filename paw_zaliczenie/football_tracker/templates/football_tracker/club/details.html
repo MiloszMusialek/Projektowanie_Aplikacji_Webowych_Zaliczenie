@@ -3,36 +3,40 @@
 {% block title %}{{ club.club_name }}{% endblock %}
 
 {% block content %}
-<p>{{ club.club_name }}</p>
-<p>Founded: {{ club.foundation_year }}</p>
-<p>Stadium: {{ club.stadium }}</p>
-<p>Manager:
-{% if club.manager %}
-    <a href="{% url 'manager-details' club.manager_id %}">{{ club.manager }}</a>
-{% else %}
-    <span>Currently without a manager</span>    
-{% endif %}
-</p>
+<div class="center-wrapper">
+    <div class="main-box">
+        <p>{{ club.club_name }}</p>
+        <p>Founded: {{ club.foundation_year }}</p>
+        <p>Stadium: {{ club.stadium }}</p>
+        <p>Manager:
+        {% if club.manager %}
+            <a href="{% url 'manager-details' club.manager_id %}">{{ club.manager }}</a>
+        {% else %}
+            <span>Currently without a manager</span>    
+        {% endif %}
+        </p>
 
-<p>Players:
-    <ul>
-        {% for player in club_players %}
-            <li>
-                <a href="{% url 'player-details' player.id %}">{{ player.first_name }} {{ player.last_name }}</a>
-            </li>
-        {% endfor %}
-    </ul>   
-</p>
-<br>
-{% if perms.football_tracker.change_club %}   
-    <a href="{% url 'club-update' club.id %}">Edit</a>
-{% endif %}
-<form method="post">
-    {% csrf_token %}
-    {% if perms.football_tracker.delete_club %}
-        <button type="submit" onclick="return confirm('Are you sure you want to delete this club?');">
-            Delete
-        </button>
-    {% endif %}
-</form>
+        <p>Players:
+            <ul>
+                {% for player in club_players %}
+                    <li>
+                        <a href="{% url 'player-details' player.id %}">{{ player.first_name }} {{ player.last_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>   
+        </p>
+        <br>
+        {% if perms.football_tracker.change_club %}   
+            <a class="button-edit" href="{% url 'club-update' club.id %}">Edit</a>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {% if perms.football_tracker.delete_club %}
+                <button class="button-delete" type="submit" onclick="return confirm('Are you sure you want to delete this club?');">
+                    Delete
+                </button>
+            {% endif %}
+        </form>    
+    </div>
+</div>
 {% endblock %}

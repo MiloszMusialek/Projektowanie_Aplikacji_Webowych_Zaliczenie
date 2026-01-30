@@ -2,32 +2,37 @@
 
 {% block title %}List of Players{% endblock %}
 {% block content %}
-<form method="get">
-    <input type="text", name="search", placeholder="Search players", value="{{ search_query }}">
+<div class="center-wrapper">
+    <div class="main-box">
+        <form method="get">
+            <input type="text", name="search", placeholder="Search players", value="{{ search_query }}">
 
-    <select name="foot">
-        <option value="">No Filter</option>
-        <option value="R"{% if filter_foot == "R" %}selected{% endif %}>Left</option>
-        <option value="L"{% if filter_foot == "L" %}selected{% endif %}>Right</option>
-    </select>
+            <select name="foot">
+                <option value="">No Filter</option>
+                <option value="R"{% if filter_foot == "R" %}selected{% endif %}>Left</option>
+                <option value="L"{% if filter_foot == "L" %}selected{% endif %}>Right</option>
+            </select>
 
-    <select name="position">
-        <option value="">No Filter</option>
-        <option value="GK"{% if filter_position == "GK" %}selected{% endif %}>Goalkeeper</option>
-        <option value="DF"{% if filter_position == "DF" %}selected{% endif %}>Defender</option>
-        <option value="MF"{% if filter_position == "MF" %}selected{% endif %}>Midfielder</option>
-        <option value="FW"{% if filter_position == "FW" %}selected{% endif %}>Forward</option>
-    </select>
-    <button type="submit">Filter</button>
-    {% if perms.football_tracker.create_player %}
-        <a href="{% url 'player-create' %}">Add</a>
-    {% endif %}
-</form>
-<div>
-    {% for player in players %}
-        <a href="{% url 'player-details' player.id %}">
-            <p>{{ player.first_name }} {{ player.last_name }}</p>
-        </a>
-    {% endfor %}   
+            <select name="position">
+                <option value="">No Filter</option>
+                <option value="GK"{% if filter_position == "GK" %}selected{% endif %}>Goalkeeper</option>
+                <option value="DF"{% if filter_position == "DF" %}selected{% endif %}>Defender</option>
+                <option value="MF"{% if filter_position == "MF" %}selected{% endif %}>Midfielder</option>
+                <option value="FW"{% if filter_position == "FW" %}selected{% endif %}>Forward</option>
+            </select>
+            <button type="submit">Filter</button>
+            {% if perms.football_tracker.create_player %}
+                <a href="{% url 'player-create' %}">Add</a>
+            {% endif %}
+        </form>
+        <div>
+            {% for player in players %}
+                <a href="{% url 'player-details' player.id %}">
+                    <p>{{ player.first_name }} {{ player.last_name }}</p>
+                </a>
+            {% endfor %}   
+        </div>
+    </div>
 </div>
+
 {% endblock %}
