@@ -7,7 +7,7 @@
         <form method="get">
             <input type="text", name="search", placeholder="Search Tournaments", value="{{ seach_query }}">
             <button type="submit">Filter</button>
-            {% if perms.football_tracker.create_tournament %}
+            {% if perms.football_tracker.add_tournament %}
                 <a href="{% url 'tournament-create' %}">Add</a>
             {% endif %}
         </form>

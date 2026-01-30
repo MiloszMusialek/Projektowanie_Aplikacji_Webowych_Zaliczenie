@@ -8,7 +8,7 @@
         <form method="get">
             <input type="text", name="search", placeholder="Search managers", value="{{ seach_query }}">
             <button type="submit">Filter</button>
-            {% if perms.football_tracker.create_manager %}
+            {% if perms.football_tracker.add_manager %}
                 <a href="{% url 'manager-create' %}">Add</a>
             {% endif %}
         </form>

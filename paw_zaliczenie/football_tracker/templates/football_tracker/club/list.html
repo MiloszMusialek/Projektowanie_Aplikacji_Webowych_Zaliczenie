@@ -14,7 +14,7 @@
                 {% endfor %}
             </select>
             <button type="submit">Filter</button>
-            {% if perms.football_tracker.create_club %}
+            {% if perms.football_tracker.add_club %}
                 <a href="{% url 'club-create' %}">Add</a>
             {% endif %}
         </form>

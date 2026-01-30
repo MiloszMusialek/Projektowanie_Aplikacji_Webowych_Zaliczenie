@@ -642,13 +642,13 @@ def league_update_html(request, id):
 @login_required(login_url='user-login')
 @permission_required('football_tracker.view_tournament', raise_exception=True)
 def tournament_list_html(request):
-    tournamnets = Tournament.objects.all()
+    tournaments = Tournament.objects.all()
 
     search_query = request.GET.get('search')
     if search_query:
         tournaments = tournaments.filter(name__icontains=search_query)
 
-    return render(request, 'football_tracker/tournament/list.html', {'tournaments': tournamnets, 'search_query': search_query})
+    return render(request, 'football_tracker/tournament/list.html', {'tournaments': tournaments, 'search_query': search_query})
 
 
 # Widok do wyświetlania konkretnego turnieju
